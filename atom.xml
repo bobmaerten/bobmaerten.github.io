@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Bob Maerten</title>
+  <subtitle>Humeurs, interrogations, pâtisseries, développement web, systèmes Linux et autres curiosités</subtitle>
+  <id>http://bobmaerten.github.io/</id>
+  <link href="http://bobmaerten.github.io/"/>
+  <link href="http://bobmaerten.github.io/atom.xml" rel="self"/>
+  <updated>2015-03-15T10:11:00+01:00</updated>
+  <author>
+    <name>Bob Maerten</name>
+  </author>
+  <entry>
+    <title>Premiers pas avec OSX Yosemite</title>
+    <link rel="alternate" href="/blog/2015/premiers-pas-avec-osx-yosemite/"/>
+    <id>/blog/2015/premiers-pas-avec-osx-yosemite/</id>
+    <published>2015-03-15T10:11:00+01:00</published>
+    <updated>2015-03-15T10:11:00+01:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;Comme je le disais dans le &lt;a href="/blog/2015/preparation-au-changement"&gt;précédent billet&lt;/a&gt;, je vais dès le mois prochain changer d&amp;#39;environnement professionnel, mais également d&amp;#39;environnement logiciel et matériel dans la mesure où je vais passer sous OSX Yosemite.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;La réception du matos ce weekend m&amp;#39;a permis de remettre les mains dans l&amp;#39;environnement à la pomme auquel je n&amp;#39;avais pas vraiment touché depuis une formation à OSX 10.6 il y a quelques années, laissée sans suite.&lt;/p&gt;
+
+&lt;p&gt;Si vous suivez mon activité en ligne vous savez surement que je suis un utilisateur de GNU/Linux (et Debian/Ubuntu en particulier) depuis trèèèèèès longtemps, mais j&amp;#39;ai été agréablement surpris des similitudes entre les environnements. Le système de dock par exemple se comporte quasiment comme celui de Ubuntu. Les paramètres systèmes sont organisés de la même façon. Oh, je me doute bien de qui a pompé sur qui, pas de souci, mais au final je m&amp;#39;y retrouve plutôt facilement pour le moment.&lt;/p&gt;
+
+&lt;p&gt;Après, il y a également le terrain bien connu du terminal et de la ligne de commande. Ici, même combat, un bash de base quand on lance le terminal, mais le processus d&amp;#39;installation d&amp;#39;un zsh ou même d&amp;#39;un &lt;a href="http://ohmyz.sh"&gt;oh-my-zsh&lt;/a&gt; est identique (on est sur une base BSD) et je retrouve assez vite mon environnement habituel.&lt;/p&gt;
+
+&lt;p&gt;Pour l&amp;#39;installation des applications, pas de déroute non plus car avec &lt;a href="http://brew.sh"&gt;Homebrew&lt;/a&gt; là non plus rien de perturbant. Il y a même une recette pour permettre d&amp;#39;installer des logiciels packagés, et là c&amp;#39;est vraiment le bonheur (même si l&amp;#39;installation d&amp;#39;un &lt;code&gt;.dmg&lt;/code&gt; est vraiment triviale).&lt;/p&gt;
+
+&lt;p&gt;Il y a même par défaut un système bien plus léger et tout aussi pratique que le Dash de Ubuntu pour rechercher et lancer facilement des commandes ou des logiciels.&lt;/p&gt;
+
+&lt;p&gt;Enfin, pour les quelques réglages un peu spécifiques, comme virer ce f*ck*ng &lt;em&gt;shime&lt;/em&gt; au démarrage ou pour accélérer la répétition du clavier, il faut fouiller un peu sur le net et on trouve rapidement une solution soit à l&amp;#39;aide d&amp;#39;outils spécifiques, soit à l&amp;#39;aide de commandes systèmes en terminal.&lt;/p&gt;
+
+&lt;p&gt;Voilà, pas trop dérouté par cette première approche, hormis peut-être le &lt;em&gt;layout&lt;/em&gt; du clavier qui va me poser quelques problèmes un moment (surtout que je passe souvent d&amp;#39;un clavier à un autre, je tape ce texte sur mon portable PC) et de me resituer dans le contexte d&amp;#39;un débutant sur ce système BSD que je connais peu. Mais cette fois-ci, je vais essayer de noter et commenter le plus possible ce que je découvre, le partager ici ou sur le &lt;a href="https://github.com/bobmaerten/TIL.git"&gt;dépôt TIL (Today I Learned)&lt;/a&gt; que j&amp;#39;ai récemment crée pour ce genre de choses.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Préparation au changement</title>
+    <link rel="alternate" href="/blog/2015/preparation-au-changement/"/>
+    <id>/blog/2015/preparation-au-changement/</id>
+    <published>2015-01-21T07:32:00+01:00</published>
+    <updated>2015-01-21T07:32:00+01:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;À l&amp;#39;extrême opposé des concepts fondamentaux de la &lt;a href="http://fr.wikipedia.org/wiki/Loi_de_Murphy"&gt;Loi de Murphy&lt;/a&gt;, c&amp;#39;est lorsque tu ne t&amp;#39;attends plus à rien qu&amp;#39;une agréable surprise te saute à la tronche. En effet, dans quelques semaines, je vais mettre de côté ma carrière dans la fonction publique pour rejoindre une entreprise privée à taille humaine pour une aventure pleine de découverte, de rencontres, et je l&amp;#39;espère avec un minimum de réussite.&lt;/p&gt;
+
+&lt;p&gt;Aussi inattendue que réjouissante soit cette nouvelle, il faut dire que mon &lt;a href="/blog/2014/renonciation/"&gt;parcours du combattant ces 3 dernières années&lt;/a&gt; pour faire changer les choses sur le plan de mon environnement quotidien ainsi que sur mon ouverture personnelle, m&amp;#39;avait manifestement préparé à celà.&lt;/p&gt;
+
+&lt;p&gt;Et qui dit changement professionnel, dit également changement d&amp;#39;habitudes. J&amp;#39;ai envie d&amp;#39;explorer de nouveaux environnements et c&amp;#39;est pourquoi sur proposition de mon futur employeur, j&amp;#39;ai décidé de tenter l&amp;#39;expérience OSX pour cette aventure, avec toute la rupture que cela peut occasionner. Heureusement j&amp;#39;ai un peu de temps pour m&amp;#39;y mettre et le système n&amp;#39;est pas sans quelques outils que j&amp;#39;utilise déjà au quotidien : un terminal, vim et un bon browser, « ouate ailse » comme dirait notre &lt;a href="http://youtu.be/J83fzP-rHio?t=1m37s"&gt;Jean Dujardin&lt;/a&gt; (inter)national ?&lt;/p&gt;
+
+&lt;p&gt;Cela dit, cette rupture ne sera sans doute pas sans écueil, mais je sais que je pourrais compter sur la large et compétente communauté en ligne pour me filer des tuyaux, que je ne manquerais pas de compiler ici.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;To infinity, and beyond!&lt;/em&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Série de screencasts sur un outil d'orchestration système : Ansible</title>
+    <link rel="alternate" href="/blog/2014/serie-de-screencasts-sur-un-outil-d-orchestration-systeme-ansible/"/>
+    <id>/blog/2014/serie-de-screencasts-sur-un-outil-d-orchestration-systeme-ansible/</id>
+    <published>2014-11-14T12:28:00+01:00</published>
+    <updated>2014-11-14T12:28:00+01:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;Il parait que c&amp;#39;est Vendredi, et comme « Vendredi c&amp;#39;est permis »  alors je fais un peu de promo. ;-)&lt;/p&gt;
+
+&lt;p&gt;J&amp;#39;ai eu l&amp;#39;opportunité de réaliser des screencasts pour une plate-forme de tutoriels en ligne locale (&lt;a href="https://synbioz.com"&gt;Synbioz&lt;/a&gt; à Lomme/Euratechnologies) sur le sujet de l&amp;#39;orchestration de tâches d&amp;#39;administration système avec un outil qu&amp;#39;on utilise au quotidien depuis quelques mois au système : Ansible.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://hackademy.io/tutoriel-videos/ansible-automatiser-gestion-serveur-partie-1"&gt;Intro à l&amp;#39;automatisation de tâches&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hackademy.io/tutoriel-videos/ansible-decouverte-playbook"&gt;Les playbooks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hackademy.io/tutoriel-videos/roles-ansible"&gt;Les rôles&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;N&amp;#39;hésitez pas à partager ces liens sur vos réseaux et me faire des retours positifs ou non, ou des suggestions pour les prochains.&lt;/p&gt;
+
+&lt;p&gt;De plus, si vous vous sentez l&amp;#39;âme d&amp;#39;un pédagogue sur une des thématiques de la plate-forme, n&amp;#39;hésitez pas à les contacter, ils sont très sympathiques et fournissent un &lt;a href="https://github.com/hackademy-io/screencasts-production"&gt;&amp;ldquo;process&amp;rdquo; et un &amp;ldquo;kit&amp;rdquo;&lt;/a&gt; pour démarrer la réalisations, et au besoin, ils peuvent s&amp;#39;occuper du montage final.&lt;/p&gt;
+
+&lt;p&gt;PS : les plus malins auront remarqué le changement de prononciation de &amp;ldquo;ansible&amp;rdquo; sur les 2 derniers, c&amp;#39;est simplement parce que j&amp;#39;ai eu pas mal de retour sur le 1er qui date de qq mois et que les gens préféraient à l&amp;#39;anglaise.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Attention à la visibilité interne de vos conteneurs Docker</title>
+    <link rel="alternate" href="/blog/2014/attention-a-la-visibilite-interne-de-vos-containers-docker/"/>
+    <id>/blog/2014/attention-a-la-visibilite-interne-de-vos-containers-docker/</id>
+    <published>2014-10-21T13:56:00+02:00</published>
+    <updated>2014-10-21T13:56:00+02:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;Au détour d&amp;#39;une &lt;a href="https://twitter.com/bourvill/status/524492824302333953"&gt;question sur twitter&lt;/a&gt; de &lt;a href="https://twitter.com/bourvill"&gt;Maxime&lt;/a&gt;, j&amp;#39;ai eu l&amp;#39;occasion de me rendre compte que par défaut, 2 &lt;em&gt;containers&lt;/em&gt; Docker lancés sur le même &lt;em&gt;host&lt;/em&gt; pouvaient effectivement se « voir » et donc échanger sur leur ports ouverts comme bon leur semblent.&lt;/p&gt;
+
+&lt;p&gt;Bien que ce ne soit pas complètement gênant, il m&amp;#39;a semblé que cela pouvait potentiellement poser des problèmes de sécurité, ou &lt;a href="https://twitter.com/bourvill/status/524527521589907456"&gt;comme le souligne Maxime&lt;/a&gt; des soucis fonctionnels.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt; : Utilisez &lt;code&gt;--icc=false&lt;/code&gt; dans vos paramètres du service &lt;code&gt;docker&lt;/code&gt; pour isoler les communications inter-conteneurs.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2&gt;Explications&lt;/h2&gt;
+
+&lt;p&gt;Comme habituellement dans ce cas là, on dégaine le &lt;a href="http://fr.wikipedia.org/wiki/RTFM"&gt;RTFM&lt;/a&gt; et on cherche comment ça fonctionne. Il faut savoir que le comportement par défaut de Docker est de permettre justement cette communication entre &lt;em&gt;containers&lt;/em&gt;. Illustrons ceci avec un exemple.&lt;/p&gt;
+
+&lt;p&gt;Admettons que je lance un &lt;em&gt;container&lt;/em&gt; &lt;code&gt;nginx&lt;/code&gt; et que j&amp;#39;obtienne son IP interne.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ docker run --name container-nginx -d nginx
+1ab647f88995b0669d7e6b777b7640149c1805ebbba953f3e6662ce2e7289fbf
+
+$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' container-nginx
+172.17.0.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Puis je lance un second &lt;em&gt;container&lt;/em&gt; pour vérifier la connectivité avec le premier sur le port 80&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ docker run --rm -it ubuntu
+root@ec073d0d3f63:/# apt-get update &amp;amp;&amp;amp; apt-get install curl -y
+[...]
+root@ec073d0d3f63:/# curl -I http://172.17.0.2
+HTTP/1.1 200 OK
+Server: nginx/1.7.6
+Date: Tue, 21 Oct 2014 12:22:07 GMT
+Content-Type: text/html
+Content-Length: 612
+Last-Modified: Tue, 30 Sep 2014 14:16:33 GMT
+Connection: keep-alive
+ETag: "542abb41-264"
+Accept-Ranges: bytes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ça fonctionne ! O_o&lt;/p&gt;
+
+&lt;p&gt;Cela est dû au paramétrage par défaut de Docker. En effet, l&amp;#39;option &lt;code&gt;--icc&lt;/code&gt; (inter-container communication) est par défaut à &lt;code&gt;true&lt;/code&gt;. Pour désactiver ce comportement (recommandé en production), modifiez la variable &lt;code&gt;DOCKER_OPTS&lt;/code&gt; du fichier &lt;code&gt;/etc/default/docker&lt;/code&gt; avant de relancer le service (attention, cela stoppe tous vos &lt;em&gt;containers&lt;/em&gt;).&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ grep DOCKER_OPTS /etc/default/docker
+# Use DOCKER_OPTS to modify the daemon startup options.
+DOCKER_OPTS="--icc=false"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Petite précision, cela n&amp;#39;affectera pas la communication entre les &lt;em&gt;containers&lt;/em&gt; liés. Pour cela, Docker modifie les règles du firewall en activant une règle FORWARD.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ docker run --rm -it --link container-nginx:nginx ubuntu
+root@f5bb6005185e:/# apt-get update &amp;amp;&amp;amp; apt-get install curl -y
+[...]
+root@f5bb6005185e:/# curl -I http://172.17.0.2
+HTTP/1.1 200 OK
+Server: nginx/1.7.6
+Date: Tue, 21 Oct 2014 12:42:50 GMT
+Content-Type: text/html
+Content-Length: 612
+Last-Modified: Tue, 30 Sep 2014 14:16:33 GMT
+Connection: keep-alive
+ETag: "542abb41-264"
+Accept-Ranges: bytes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Un coup d&amp;#39;oeil sur les règles &lt;em&gt;iptables&lt;/em&gt; sur un autre terminal :&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ sudo iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+ACCEPT     tcp  --  172.17.0.2           172.17.0.4           tcp spt:http
+ACCEPT     tcp  --  172.17.0.4           172.17.0.2           tcp dpt:http
+ACCEPT     tcp  --  172.17.0.2           172.17.0.4           tcp spt:https
+ACCEPT     tcp  --  172.17.0.4           172.17.0.2           tcp dpt:https
+ACCEPT     all  --  anywhere             anywhere             ctstate RELATED,ESTABLISHED
+ACCEPT     all  --  anywhere             anywhere
+DROP       all  --  anywhere             anywhere
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Et une fois le &lt;em&gt;container&lt;/em&gt; terminé :&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ sudo iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+ACCEPT     all  --  anywhere             anywhere             ctstate RELATED,ESTABLISHED
+ACCEPT     all  --  anywhere             anywhere
+DROP       all  --  anywhere             anywhere
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;En résumé&lt;/h2&gt;
+
+&lt;p&gt;Si vous souhaitez sécuriser un peu mieux votre &lt;em&gt;host&lt;/em&gt; Docker, en particulier si vous faites tourner des conteneurs de différents clients/publics, pensez à activer l&amp;#39;option &lt;code&gt;--icc=false&lt;/code&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Renonciation</title>
+    <link rel="alternate" href="/blog/2014/renonciation/"/>
+    <id>/blog/2014/renonciation/</id>
+    <published>2014-09-25T17:48:00+02:00</published>
+    <updated>2014-09-25T17:48:00+02:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;J&amp;#39;abandonne, j&amp;#39;arrête, je stoppe, je laisse tomber, bref je renonce. Autant de synonymes du sentiment de raz-le bol général qui m&amp;#39;envahit vis à vis de mon activité professionnelle.&lt;/p&gt;
+
+&lt;p&gt;Cela fait en effet bientôt 3 ans que je cherche à changer de travail. Celui que j&amp;#39;occupe ne me satisfait plus depuis longtemps. Plus précisément depuis que notre service s&amp;#39;est transformé en Direction des Systèmes d&amp;#39;Information (DSI). C&amp;#39;est une entité dont la charge est de veiller au bon fonctionnement du SI, tâche noble s&amp;#39;il en est, mais dans la pratique cela s&amp;#39;avère plus être de la gestion de « portefeuilles de projet » que de gérer des projets à proprement parler, et de suivre des contrats de service et des prestataires extérieurs, et c&amp;#39;est là où ça me gêne.&lt;/p&gt;
+
+&lt;p&gt;Attention, je ne dis pas que ce n&amp;#39;est pas utile, et je ne remets pas en question ce mode de fonctionnement, mais simplement cela ne correspond absolument pas à ma vision de mon métier, ou tout du moins ce que j&amp;#39;aurais envie de faire au quotidien.&lt;/p&gt;
+
+&lt;p&gt;Il faut dire que je suis un autodidacte. N&amp;#39;ayant pas été particulièrement brillant dans mes études, mes parents m&amp;#39;ont tout de même convaincu d&amp;#39;assurer le coup dans un diplôme minimum à l&amp;#39;époque pour pouvoir trouver du travail ensuite, et ce fût exactement ce qui se passa. Je n&amp;#39;ai jamais connu le chômage et j&amp;#39;ai été très tôt aspiré dans la sphère de la fonction publique qui m&amp;#39;a offert mon 1er emploi.&lt;/p&gt;
+
+&lt;p&gt;Et comme beaucoup de mes congénères j&amp;#39;ai un coté assez &lt;strong&gt;geek&lt;/strong&gt;. Pendant mon adolescence, je jouais à AD&amp;amp;D et lisais des livres « dont vous êtes le héros », j&amp;#39;ai nagé dans la S.F. des années 80/90 et j&amp;#39;ai découvert l&amp;#39;informatique avec des machines de type Spectrum, Amstrad, MO5/TO7, Atari et Amiga, puis des PC toujours plus puissants et polyvalents. Ma veille technique oscillait entre les lectures de Hebdogiciel et d&amp;#39;autres revues orientées développement/bidouillage. Tous mes passes-temps étaient plus ou moins orientés vers l&amp;#39;usage des machines et la conception de programmes. Et cela s&amp;#39;est prolongé pendant mes premières années professionnelles où l&amp;#39;inventivité et l&amp;#39;innovation compensaient les manques de moyens, où la confiance était réelle, et permettait d&amp;#39;assurer les services rendus.&lt;/p&gt;
+
+&lt;p&gt;Mais ça, c&amp;#39;était avant. Point de confiance désormais avec une hiérarchie qui a eu trop peur d&amp;#39;être un jour « tenue par les couilles » (sic!) par ses informaticiens. C&amp;#39;est de cette peur, et de cette défiance qu&amp;#39;est venu le concept de DSI, là où un Centre de Ressources Informatique remplissait clairement les missions qui lui étaient confiées, avec des gens compétents et motivés à la fois par leur travail et par la satisfaction du service rendu.&lt;/p&gt;
+
+&lt;p&gt;Les fonctions ont été segmentées et cloisonnées, les gens clairement identifiés avec des « casquettes » et rangés dans leur domaine de compétence sans l&amp;#39;opportunité d&amp;#39;en changer. Des huiles ont été recrutées pour mettre en ordre tout ce petit monde auto-organisé, les monter les uns contre les autres, pointer du doigt des faux-problèmes sans apporter de solutions crédibles, faire des rapports au doigt mouillé et dépenser le budget, oh le sacro-saint budget, en projets aussi hors de prix qu&amp;#39;inefficaces.&lt;/p&gt;
+
+&lt;p&gt;Et moi dans tout ça, je ne rêvais que de cellules auto-gérées et communicantes, qui sauraient quelle place était la leur dans un ensemble cohérent. Je lisais des bouquins sur les méthodologies agiles, sur les nouveaux modes de management, sur la transversalité des métiers qui mènerait à ce que l&amp;#39;on nomme &lt;a href="http://fr.wikipedia.org/wiki/Devops"&gt;DevOps&lt;/a&gt; aujourd&amp;#39;hui, de temps réservés où nous pourrions échanger sur nos pratiques, apprendre des uns et des autres et progresser ensemble. Mais tous ces éléments ne sont pas compatibles avec la rigidité d&amp;#39;une DSI et des personnes qui la pilotent. C&amp;#39;est pour cela que je me suis mis en tête de trouver autre chose, qui serait plus en adéquation avec mes aspirations. Et je me suis mis en quête d&amp;#39;un nouveau poste.&lt;/p&gt;
+
+&lt;p&gt;Quel désastre. En fait, c&amp;#39;est partout pareil !&lt;/p&gt;
+
+&lt;p&gt;Tous les établissements de la fonction publique se structurent de la même manière : des DSI, cloisonnées, sclérosées, répondant au seul objectif de « bien dépenser le budget alloué ». Objectif sûrement louable pour la plupart des gens, mais certainement pas pour moi. Ma vision est toujours celle où du bien-être des employés naissent des choses formidables comme la motivation, l&amp;#39;auto-organisation, la confiance et les performances et qui mènent à ce que les missions soient remplies et que les choses se passent bien dans un environnement agréable.&lt;/p&gt;
+
+&lt;p&gt;Je me suis alors tourné vers le privé. Ai essayé de trouver une petite structure, tout du moins à taille humaine, où je pourrais évoluer avec des collègues que je côtoierais au quotidien, où les échanges seraient favorables dans les deux sens. Quel mal m&amp;#39;en a pris !&lt;/p&gt;
+
+&lt;p&gt;Ces petites structures existent, mais à moins de bosser, quasi jour et nuit, en connaissant par cœur les dernières techniques, logiciels, framework à la mode, point de salut. En plus il faut se délocaliser. Au mieux sur Paris, au pire à l&amp;#39;étranger. Et ne parlons pas du télétravail qui reste complètement épisodique, hormis les boites qui se sont construites sur ce modèle mais qui ne recrutent que des &lt;strong&gt;jedi ninja à fort penchant hacker qui roxxorise du poney, et si t&amp;#39;es un hipster full-swag c&amp;#39;est encore mieux car ça colle à l&amp;#39;esprit de la boîte&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Et le pire de tout, lors des entretiens que j&amp;#39;ai pu passer, mon expérience dans la fonction publique est considérée comme un &lt;strong&gt;handicap&lt;/strong&gt; ! Je dois être 2x meilleur que le meilleur qui se présente pour avoir une chance de passer à l&amp;#39;étape suivante qui est souvent une mise en situation avec les équipes, là ou on voit si ça peut vraiment coller. Sans bien évidemment parler de la rémunération avant cette ultime étape, comme ça, on hésite à refuser si on trouve que c&amp;#39;est trop peu.&lt;/p&gt;
+
+&lt;p&gt;À 40 ans, ce n&amp;#39;est ni le rythme que je recherche, ni la rémunération que j&amp;#39;attends. Comme beaucoup de gens, j&amp;#39;ai une maison et son crédit à rembourser, des gosses qui s&amp;#39;apprêtent à se lancer dans les études et bien entendu quasi pas de réserve financière pour s&amp;#39;imaginer tout plaquer, et encore moins de possibilité de rupture conventionnelle et des indemnités chômage associées. Oh bien sur, vous me direz : « Eh ben, pourquoi tu te mets pas &lt;strong&gt;freelance&lt;/strong&gt; ? ». Facile à dire, plus difficile à faire. Pareil ici, il faut un minimum de réserve pour se lancer (la plupart des gens parlent de 6 mois à 1 an d&amp;#39;équivalent de ton revenu actuel) chose que je n&amp;#39;ai bien évident pas, même avec mon salaire actuel de « ministre ».&lt;/p&gt;
+
+&lt;p&gt;Bref, 3 ans de recherche, de candidatures, d&amp;#39;entretiens, d&amp;#39;espoir et de désespoir pour en arriver au constat que &lt;strong&gt;je suis fonctionnaire et c&amp;#39;est bien fait pour ma gueule&lt;/strong&gt;. Après tout, pourquoi un sale nanti comme moi, pas trop mal payé pour ce qu&amp;#39;on attend de lui, voudrait changer, se remettre en cause, et profiler son activité professionnelle en dehors des clous qui ont été plantés pour lui ?&lt;/p&gt;
+
+&lt;p&gt;Alors oui je suis exigeant, oui je ne fais sûrement pas les efforts nécessaires pour provoquer le changement, oui je râle beaucoup, oui je vis dans le monde des bisounours, oui je suis un privilégié qui devrait se contenter de ce qu&amp;#39;il a et fermer sa gueule de sale emmerdeur de fonctionnaire, faire ses 37h30 et profiter des ses probablement trop nombreux jours de congés.&lt;/p&gt;
+
+&lt;p&gt;Mais c&amp;#39;est plus fort que moi. Ce n&amp;#39;est pas ma nature, mon profil, mon objectif, appelez cela comme vous voulez, de rester dans une situation professionnelle où je suis frustré au quotidien. De devenir un alchimiste tous les matins et de transmuter des pieds de plomb en une matière encore plus dense. De ne pas pouvoir ne serait-ce que tenter de mettre en place de nouvelles choses qui permettraient de rendre ce quotidien plus serein, plus intéressant, plus motivant. Ce n&amp;#39;est pas moi, mais je n&amp;#39;arrive même plus à m&amp;#39;en convaincre. Mon environnement professionnel s&amp;#39;en est chargé.&lt;/p&gt;
+
+&lt;p&gt;Bref, je renonce. La fonction publique a gagné. Elle a absorbé toute la volonté que j&amp;#39;avais de faire des choses bien de ma vie professionnelle. Je continuerai donc à être pas trop mal payé pour des activités aussi insipides qu&amp;#39;inutiles, à souffler et pester contre un système qui ne met plus l&amp;#39;humain dans ses équations, à être infect avec certains de mes collègues que je méprise pour leur incompétence, mais qui au fond ont tout compris depuis fort longtemps. Car c&amp;#39;est moi qui suis dans le délire. Après tout, pourquoi se faire chier à faire des choses sympa alors qu&amp;#39;on peut rester assis sur son cul à attendre l&amp;#39;heure de rentrer chez soi pour &lt;a href="http://fr.wikipedia.org/wiki/Temps_de_cerveau_humain_disponible"&gt;vendre son temps de cerveau à Coca Cola&lt;/a&gt; ?&lt;/p&gt;
+
+&lt;p&gt;Comme dirait &lt;a href="http://fr.wikipedia.org/wiki/La_Classe_am%C3%A9ricaine"&gt;George Abitbol&lt;/a&gt;, l&amp;#39;homme le plus classe du monde : « &lt;a href="https://www.youtube.com/watch?v=XdVjIzTBDdQ"&gt;Monde de merde&lt;/a&gt; ».&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Edit du 02/10/2014&lt;/em&gt;: merci à &lt;a href="https://larlet.fr"&gt;David Larlet&lt;/a&gt; pour les corrections (1er PR du blog, ça mérite d&amp;#39;être signalé).&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>En pause, encore...</title>
+    <link rel="alternate" href="/blog/2014/en-pause-encore/"/>
+    <id>/blog/2014/en-pause-encore/</id>
+    <published>2014-07-22T10:54:00+02:00</published>
+    <updated>2014-07-22T10:54:00+02:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;Eh oui, j&amp;#39;imagine que pour toi, lecteur de l&amp;#39;inconnu ce doit être pénible à force, mais ce blog si tant est qu&amp;#39;il ait eu une réelle existance un jour se retrouve de nouveau en sommeil, faute de motivation, de volonté à continuer à écrire même des trucs intéressants sur des sujets autres que l&amp;#39;informatique, de lassitude face à un web qui n&amp;#39;évolue vraiment pas dans le bon sens.&lt;/p&gt;
+
+&lt;p&gt;Le domaine bobmaerten.fr expire dans quelques semaines, ce site sera toujours dispo et publié sur &lt;a href="http://bobmaerten.github.io"&gt;son adresse github&lt;/a&gt;, voire éventuellement à l&amp;#39;occasion amendé si l&amp;#39;envie me reprends, mais je ne serai pas à l&amp;#39;affut si j&amp;#39;étais toi, attends plutôt la bonne surprise sur ton flux RSS (attention hein, &lt;a href="http://bobmaerten.github.com/atom.xml"&gt;celui de github&lt;/a&gt;, le plus stable au final).&lt;/p&gt;
+</content>
+  </entry>
+</feed>
