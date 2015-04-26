@@ -5,10 +5,36 @@
   <id>http://bobmaerten.github.io/</id>
   <link href="http://bobmaerten.github.io/"/>
   <link href="http://bobmaerten.github.io/atom.xml" rel="self"/>
-  <updated>2015-03-15T10:11:00+01:00</updated>
+  <updated>2015-04-25T15:25:48+02:00</updated>
   <author>
     <name>Bob Maerten</name>
   </author>
+  <entry>
+    <title>Mon nouveau travail, bilan après un mois</title>
+    <link rel="alternate" href="/blog/2015/mon-nouveau-travail-bilan-apres-un-mois/"/>
+    <id>/blog/2015/mon-nouveau-travail-bilan-apres-un-mois/</id>
+    <published>2015-04-25T15:25:48+02:00</published>
+    <updated>2015-04-25T15:25:48+02:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;Pour être tout à fait honnête, j&amp;#39;avais prévu de faire un point une semaine, 15j et 1 mois après mon changement de travail, mais force est de constater que je suis complètement largué sur le timing.&lt;/p&gt;
+
+&lt;p&gt;Il faut dire que le changement fût assez rude. Je n&amp;#39;aurais pas cru que de revenir à mes premières amours de développeur serait aussi difficile&amp;nbsp;! Les journées, voire les semaines passent à une vitesse&amp;hellip; Bref, ce n&amp;#39;est pas simple, mais ça revient un peu à la fois, et j&amp;#39;apprends plein de choses en plus de découvrir ce nouveau domaine assez méconnu pour moi qu&amp;#39;est le e-commerce.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Sans entrer dans les détails, je travaille pour un client qui utilise notre solution &lt;em&gt;adhoc&lt;/em&gt; de site de e-commerce, associé à un back-office de gestion commerciale, le tout développé en &lt;a href="http://rubyonrails.org/"&gt;Ruby on Rails&lt;/a&gt; depuis quelques années et quelques versions majeures de &lt;em&gt;RoR&lt;/em&gt;, donc qui a beaucoup évolué depuis. Même sans prendre en compte mon double &lt;em&gt;noobiisme&lt;/em&gt; de sysadmin en rémission et du domaine concerné, rentrer dans le concept de l&amp;#39;application n&amp;#39;est pas simple. Mon boss a eu la bonne idée de me coller sur la couverture des tests. C&amp;#39;est un très bon moyen de comprendre ce qu&amp;#39;est censé faire l&amp;#39;appli, tout en me replongeant dans la logique des tests unitaires/fonctionnels. C&amp;#39;est également un excellent moyen d&amp;#39;augmenter la confiance dans les modifications que je peux apporter.&lt;/p&gt;
+
+&lt;p&gt;J&amp;#39;apprécie également le flux de travail mis en place. Répartis à quatres coins de mon écran, un éditeur de texte, plusieurs &lt;em&gt;shells&lt;/em&gt; au sein d&amp;#39;une session &lt;a href="http://tmux.sourceforge.net/"&gt;tmux&lt;/a&gt; faisant tourner la &lt;em&gt;stack&lt;/em&gt; de l&amp;#39;application, un &lt;a href="https://github.com/guard/guard"&gt;guard&lt;/a&gt; pour valider les tests associés au fichier que je suis en train de modifier, une console pour accéder aux données, l&amp;#39;appli github pour &lt;em&gt;commit&lt;/em&gt;er et &lt;em&gt;push&lt;/em&gt;er mes changements. Une fois le travail poussé sur github, les hooks se mettent en marche et déclenchent un test global chez &lt;a href="https://codeship.com"&gt;codeship&lt;/a&gt; ainsi qu&amp;#39;une analyse du code chez &lt;a href="https://codeclimate.com"&gt;codeclimate&lt;/a&gt; et je suis notifié du résultat dans &lt;a href="https://slack.com"&gt;slack&lt;/a&gt;.  Ces actions s&amp;#39;exécutent également lorsque qu&amp;#39;on fait un &lt;em&gt;Pull Request&lt;/em&gt; et ont la bonne idée de s&amp;#39;insérer directement dans les infos de github, ce qui permet d&amp;#39;avoir une confiance accrue dans la fusion de branche, et ça franchement c&amp;#39;est top.&lt;/p&gt;
+
+&lt;p&gt;En ce qui concerne l&amp;#39;organisation du travail, j&amp;#39;avais naturellement des appréhensions vis à vis de ma relation au télétravail, mais finalement elles se sont dissipées assez rapidement. Des &lt;em&gt;calls&lt;/em&gt; (&lt;a href="http://www.mumble.com"&gt;mumble&lt;/a&gt;/&lt;a href="https://join.me"&gt;join.me&lt;/a&gt;) réguliers avec mon boss et les clients (y compris quand je bloque sur un point), un &lt;a href="https://slack.com"&gt;slack&lt;/a&gt; pour la communication interne, et un compte-rendu du travail effectué en fin de journée que j&amp;#39;organise un peu comme je l&amp;#39;entends du moment que le travail est fait. Et ça, ça change tout&amp;nbsp;! Aller poster un courrier ou chercher un recommandé à la poste, prendre une 1/2h pour aller chez le coiffeur ou à un rendez-vous médical, effectuer une démarche administrative pendant les horaires de bureaux, tout cela est possible et accessible.&lt;/p&gt;
+
+&lt;p&gt;Donc me voilà, presque un mois après cette reconversion assez inatendue, de retour derrière un éditeur de texte pour transformer des specifications en services concrets, utiles et utilisés. Rien que cela est un énorme gain qui, certes me prends du temps et de l&amp;#39;énergie, mais qui m&amp;#39;apporte la satisfaction professionnelle qui me manquait tant. L&amp;#39;effort intellectuel est parfois difficile, tant au niveau du retard à rattraper sur les évolutions des outils, des concepts et parfois aussi de l&amp;#39;algorithmique que je n&amp;#39;ai que peu pratiquée ces dernières années, mais en vaut largement la chandelle.&lt;/p&gt;
+
+&lt;p&gt;J&amp;#39;essairai de faire d&amp;#39;autres points prochainement, et je l&amp;#39;espère des billets un peu plus techniques et concrèts quand je serai plus à l&amp;#39;aise. En attendant, je retourne m&amp;#39;imprégner de cette &lt;em&gt;codebase&lt;/em&gt; que je ne désespère pas d&amp;#39;appréhender globalement tantôt.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Premiers pas avec OSX Yosemite</title>
     <link rel="alternate" href="/blog/2015/premiers-pas-avec-osx-yosemite/"/>
@@ -239,20 +265,6 @@ target     prot opt source               destination
 &lt;p&gt;Comme dirait &lt;a href="http://fr.wikipedia.org/wiki/La_Classe_am%C3%A9ricaine"&gt;George Abitbol&lt;/a&gt;, l&amp;#39;homme le plus classe du monde : « &lt;a href="https://www.youtube.com/watch?v=XdVjIzTBDdQ"&gt;Monde de merde&lt;/a&gt; ».&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Edit du 02/10/2014&lt;/em&gt;: merci à &lt;a href="https://larlet.fr"&gt;David Larlet&lt;/a&gt; pour les corrections (1er PR du blog, ça mérite d&amp;#39;être signalé).&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>En pause, encore...</title>
-    <link rel="alternate" href="/blog/2014/en-pause-encore/"/>
-    <id>/blog/2014/en-pause-encore/</id>
-    <published>2014-07-22T10:54:00+02:00</published>
-    <updated>2014-07-22T10:54:00+02:00</updated>
-    <author>
-      <name>Bob Maerten</name>
-    </author>
-    <content type="html">&lt;p&gt;Eh oui, j&amp;#39;imagine que pour toi, lecteur de l&amp;#39;inconnu ce doit être pénible à force, mais ce blog si tant est qu&amp;#39;il ait eu une réelle existance un jour se retrouve de nouveau en sommeil, faute de motivation, de volonté à continuer à écrire même des trucs intéressants sur des sujets autres que l&amp;#39;informatique, de lassitude face à un web qui n&amp;#39;évolue vraiment pas dans le bon sens.&lt;/p&gt;
-
-&lt;p&gt;Le domaine bobmaerten.fr expire dans quelques semaines, ce site sera toujours dispo et publié sur &lt;a href="http://bobmaerten.github.io"&gt;son adresse github&lt;/a&gt;, voire éventuellement à l&amp;#39;occasion amendé si l&amp;#39;envie me reprends, mais je ne serai pas à l&amp;#39;affut si j&amp;#39;étais toi, attends plutôt la bonne surprise sur ton flux RSS (attention hein, &lt;a href="http://bobmaerten.github.com/atom.xml"&gt;celui de github&lt;/a&gt;, le plus stable au final).&lt;/p&gt;
 </content>
   </entry>
 </feed>
