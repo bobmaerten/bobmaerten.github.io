@@ -5,10 +5,155 @@
   <id>http://bobmaerten.github.io/</id>
   <link href="http://bobmaerten.github.io/"/>
   <link href="http://bobmaerten.github.io/atom.xml" rel="self"/>
-  <updated>2015-04-25T15:25:48+02:00</updated>
+  <updated>2015-05-10T18:09:02+02:00</updated>
   <author>
     <name>Bob Maerten</name>
   </author>
+  <entry>
+    <title>Retour (virtuel) des commentaires</title>
+    <link rel="alternate" href="/blog/2015/retour-virtuel-des-commentaires/"/>
+    <id>/blog/2015/retour-virtuel-des-commentaires/</id>
+    <published>2015-05-10T18:09:02+02:00</published>
+    <updated>2015-05-10T18:09:02+02:00</updated>
+    <author>
+      <name>Bob Maerten</name>
+    </author>
+    <content type="html">&lt;p&gt;Cela faisait un petit moment que je voulais réintéger les commentaires sur ce blog. Étant hébergé sur GitHub Pages et donc purement statique, la solution est forcément externe. Je ne souhaitais pas pour autant utiliser le service évident pour ce genre de chose (disqus).&lt;/p&gt;
+
+&lt;p&gt;Non pas que j&amp;#39;eusse de quelconques griefs envers ce service mais dans la continuité de proposer du contenu relativement maitrisé (un site statique), je souhaiter également maitriser cette partie commentaires. J&amp;#39;avais fait quelques essais il y quelques mois avec une appli Rails appelée &lt;a href="https://github.com/phusion/juvia"&gt;Juvia&lt;/a&gt; produite par &lt;a href="http://www.phusion.nl"&gt;Phusion&lt;/a&gt; qui manifestment n&amp;#39;est plus maintenue, mais qui a poutant été mis à jour entre temps en 4.2.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Je me suis dit que ce serait une bonne occasion de tester la mise en place de cette application dans un container Docker. De plus cela me permettrait d&amp;#39;associer la veille technologique nécessaire à cette mise en place avec mes nouvelles activités professionnelles (Rails + Sysadm + Hébergement).&lt;/p&gt;
+
+&lt;h2&gt;Construction de l&amp;#39;image&lt;/h2&gt;
+
+&lt;p&gt;Les gens qui gravitent autour de docker ne chôment pas. Des images officielles pour faire tourner des scripts &lt;a href="https://registry.hub.docker.com/_/ruby/"&gt;ruby&lt;/a&gt; et même des applications &lt;a href="https://registry.hub.docker.com/_/rails/"&gt;rails&lt;/a&gt; sont disponibles. En regardant le Dockerfile de l&amp;#39;image rails, on remarque qu&amp;#39;elle surcharge celle de ruby2.2, qui elle même s&amp;#39;appuie sur une succession d&amp;#39;images dérivées de debian:jessie. Ce qui signifie qu&amp;#39;il est toujours possible d&amp;#39;ajouter de nouveaux packages en cas d&amp;#39;usage d&amp;#39;une gem qui nécessite une compilation particulière.&lt;/p&gt;
+
+&lt;p&gt;C&amp;#39;est ce qui s&amp;#39;est produit lors de l&amp;#39;essai de contruction de l&amp;#39;image de l&amp;#39;application de gestion des commentaires dont il est question ici. Le &lt;code&gt;Dockerfile&lt;/code&gt; est très simple comme le recommande le README de l&amp;#39;image, mais la construction échoue&amp;nbsp;:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ cat Dockerfile
+FROM rails:onbuild
+
+$ docker build -t juvia_image .
+Sending build context to Docker daemon 160.5 MB
+Sending build context to Docker daemon
+Step 0 : FROM rails:onbuild
+# Executing 4 build triggers
+Trigger 0, COPY Gemfile /usr/src/app/
+Step 0 : COPY Gemfile /usr/src/app/
+ ---&amp;gt; Using cache
+Trigger 1, COPY Gemfile.lock /usr/src/app/
+Step 0 : COPY Gemfile.lock /usr/src/app/
+ ---&amp;gt; Using cache
+Trigger 2, RUN bundle install
+Step 0 : RUN bundle install
+ ---&amp;gt; Running in f004b22629a9
+Don't run Bundler as root. Bundler can ask for sudo if it is needed, and
+installing your bundle as root will break this application for all non-root
+users on this machine.
+Fetching gem metadata from https://rubygems.org/.........
+Fetching version metadata from https://rubygems.org/...
+Fetching dependency metadata from https://rubygems.org/..
+Using rake 10.4.2
+Installing i18n 0.7.0
+Installing json 1.8.2
+...
+Installing capybara-screenshot 1.0.9
+
+Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+    /usr/local/bin/ruby -r ./siteconf20150510-5-1wvt9so.rb extconf.rb
+Command 'qmake -spec linux-g++ ' not available
+
+Makefile not found
+
+Gem files will remain installed in /usr/local/bundle/gems/capybara-webkit-1.3.1 for inspection.
+Results logged to /usr/local/bundle/extensions/x86_64-linux/2.2.0-static/capybara-webkit-1.3.1/gem_make.out
+An error occurred while installing capybara-webkit (1.3.1), and Bundler cannot
+continue.
+Make sure that `gem install capybara-webkit -v '1.3.1'` succeeds before
+bundling.
+INFO[0154] The command [/bin/sh -c bundle install] returned a non-zero code: 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Comme on le constate, il manque l&amp;#39;outil &lt;code&gt;qmake&lt;/code&gt; pour que capybara-webkit puisse se compiler. Il faudrait ajouter l&amp;#39;installation du paquet en question dans le Dockerfile. Mais cette gem est dans les groupes :development et :test, qui ne sont pas utiles pour le fonctionnement en production. Pour éviter leur installation, il faudrait pouvoir préciser &lt;code&gt;--without test development&lt;/code&gt; à la commande bundle. Dans tous les cas, il faut réécrire le Dockerfile et en s&amp;#39;inspirant de celui de l&amp;#39;image rails, on arrive à quelque chose comme ça&amp;nbsp;:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ cat Dockerfile
+FROM ruby:2.2.2
+RUN apt-get update \
+        &amp;amp;&amp;amp; apt-get install sqlite3 nodejs --no-install-recommends -y qt5-default libqt5webkit5-dev \
+        &amp;amp;&amp;amp; apt-get clean \
+        &amp;amp;&amp;amp; rm -rf /var/lib/apt/lists/*
+
+RUN bundle config --global frozen 1
+
+ENV RAILS_ENV production
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY Gemfile /usr/src/app/Gemfile
+COPY Gemfile.lock /usr/src/app/Gemfile.lock
+RUN bundle install --without='development test postgres mysql' --path=help
+
+COPY . /usr/src/app
+
+RUN bundle exec rake db:create \
+ &amp;amp;&amp;amp; bundle exec rake db:schema:load \
+ &amp;amp;&amp;amp; bundle exec rake assets:precompile RAILS_GROUPS=assets
+
+EXPOSE 3000
+CMD ["rails", "server", "-b", "0.0.0.0"]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Je passe les petites corrections pour avoir les bonnes valeurs sur les fichiers sensibles de Rails (SECREY_KEY_BASE en production, des valeurs correctes dans database.yml, etc.). Au final l&amp;#39;image se construit et on peut valider le fonctionnement.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ docker run --detach --name juvia_app -e SECRET_KEY_BASE="abcde" juvia_image
+3489371959f964b3b7d85e2bbda19d294a2c841b0a987261d68794c21bb4d59b
+
+$ docker logs juvia_app
+[2015-05-10 17:18:12] INFO  WEBrick 1.3.1
+[2015-05-10 17:18:12] INFO  ruby 2.2.2 (2015-04-13) [x86_64-linux]
+[2015-05-10 17:18:12] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
+
+$ curl -I $(boot2docker ip):3000
+HTTP/1.1 302 Found
+X-Frame-Options: SAMEORIGIN
+X-Xss-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Location: http://192.168.59.103:3000/admin/dashboard/new_admin
+Content-Type: text/html; charset=utf-8
+Cache-Control: no-cache
+X-Request-Id: ba8299a1-d93d-4a14-93c1-d573e2c31178
+X-Runtime: 0.002761
+Server: WEBrick/1.3.1 (Ruby/2.2.2/2015-04-13)
+Date: Sun, 10 May 2015 17:21:14 GMT
+Content-Length: 0
+Connection: Keep-Alive
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Oui, vous constatez l&amp;#39;utilisation de &lt;a href="http://boot2docker.io"&gt;boot2docker&lt;/a&gt;. Depuis mon passage sur OSX, mon portable sous linux a rendu l&amp;#39;âme (carte mère grillé), donc je me suis rabattu sur un environnement compatible, malgré &lt;a href="https://twitter.com/bobmaerten/status/597347960058454016"&gt;quelques surprises&lt;/a&gt;. Au fond c&amp;#39;est assez transparent, une fois la &lt;a href="http://blog.blackfire.io/how-we-use-docker.html"&gt;configuration correctement installée&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Mise en place du conteneur&lt;/h2&gt;
+
+&lt;p&gt;Voila, nous avons une image plus ou moins fonctionelle, reste plus qu&amp;#39;à la déployer et assurer la persistance des données.
+Pour le déploiement, j&amp;#39;ai à ma disposition une petite instance d&amp;#39;un serveur Ubuntu chez &lt;a href="https://www.digitalocean.com/?refcode=dd83518f68db"&gt;DigitalOcean&lt;/a&gt; sur lequel un &lt;em&gt;daemon&lt;/em&gt; docker assure le travail, ainsi qu&amp;#39;un &lt;a href="https://github.com/jwilder/nginx-proxy"&gt;conteneur particulier&lt;/a&gt; qui “écoute” les événements du service et qui met en place un reverse-proxy sur le nom du VIRTUAL_HOST passé en variable d&amp;#39;environnement du conteneur.&lt;/p&gt;
+
+&lt;p&gt;Pour la persitance des données on peut soit monter un dossier de l&amp;#39;hôte lors du démarrage du conteneur avec l&amp;#39;option &lt;code&gt;-v&lt;/code&gt; ou alors créer des &lt;em&gt;data-volumes&lt;/em&gt; et utiliser l&amp;#39;option &lt;code&gt;--volumes-from&lt;/code&gt;. Pour des questions de simplicité et puisque je maitrise mon contexte j&amp;#39;utilise la première solution, mais docker préconise plutôt l&amp;#39;usage de conteneur de données pour des raisons de portabilité.&lt;/p&gt;
+
+&lt;p&gt;Voici donc la ligne de commande permettant de lancer le conteneur&amp;nbsp;:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;docker run --name comments \
+       -e VIRTUAL_HOST="comments.bobmaerten.eu" \
+       -e SECRET_KEY_BASE="$(rake secret)" \
+       -v /root/containers/comments/db:/usr/src/app/db \
+       -v /root/containers/comments/log:/usr/src/app/log \
+       --restart=always \
+       --detach juvia_app
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Résultats&lt;/h2&gt;
+
+&lt;p&gt;Si tout vas bien, lors du déploiement de cette version du site avec ce billet, le layout devrait afficher la liste des commentaires des billets ainsi qu&amp;#39;un formulaire pour en laisser. Ce sera l&amp;#39;occasion de tester l&amp;#39;application en réel et de voir les améliorations à apporter même si j&amp;#39;ai déjà quelques idées (localisation, ajout de notifications, etc.).&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Mon nouveau travail, bilan après un mois</title>
     <link rel="alternate" href="/blog/2015/mon-nouveau-travail-bilan-apres-un-mois/"/>
@@ -215,56 +360,6 @@ target     prot opt source               destination
 &lt;h2&gt;En résumé&lt;/h2&gt;
 
 &lt;p&gt;Si vous souhaitez sécuriser un peu mieux votre &lt;em&gt;host&lt;/em&gt; Docker, en particulier si vous faites tourner des conteneurs de différents clients/publics, pensez à activer l&amp;#39;option &lt;code&gt;--icc=false&lt;/code&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Renonciation</title>
-    <link rel="alternate" href="/blog/2014/renonciation/"/>
-    <id>/blog/2014/renonciation/</id>
-    <published>2014-09-25T17:48:00+02:00</published>
-    <updated>2014-09-25T17:48:00+02:00</updated>
-    <author>
-      <name>Bob Maerten</name>
-    </author>
-    <content type="html">&lt;p&gt;J&amp;#39;abandonne, j&amp;#39;arrête, je stoppe, je laisse tomber, bref je renonce. Autant de synonymes du sentiment de raz-le bol général qui m&amp;#39;envahit vis à vis de mon activité professionnelle.&lt;/p&gt;
-
-&lt;p&gt;Cela fait en effet bientôt 3 ans que je cherche à changer de travail. Celui que j&amp;#39;occupe ne me satisfait plus depuis longtemps. Plus précisément depuis que notre service s&amp;#39;est transformé en Direction des Systèmes d&amp;#39;Information (DSI). C&amp;#39;est une entité dont la charge est de veiller au bon fonctionnement du SI, tâche noble s&amp;#39;il en est, mais dans la pratique cela s&amp;#39;avère plus être de la gestion de « portefeuilles de projet » que de gérer des projets à proprement parler, et de suivre des contrats de service et des prestataires extérieurs, et c&amp;#39;est là où ça me gêne.&lt;/p&gt;
-
-&lt;p&gt;Attention, je ne dis pas que ce n&amp;#39;est pas utile, et je ne remets pas en question ce mode de fonctionnement, mais simplement cela ne correspond absolument pas à ma vision de mon métier, ou tout du moins ce que j&amp;#39;aurais envie de faire au quotidien.&lt;/p&gt;
-
-&lt;p&gt;Il faut dire que je suis un autodidacte. N&amp;#39;ayant pas été particulièrement brillant dans mes études, mes parents m&amp;#39;ont tout de même convaincu d&amp;#39;assurer le coup dans un diplôme minimum à l&amp;#39;époque pour pouvoir trouver du travail ensuite, et ce fût exactement ce qui se passa. Je n&amp;#39;ai jamais connu le chômage et j&amp;#39;ai été très tôt aspiré dans la sphère de la fonction publique qui m&amp;#39;a offert mon 1er emploi.&lt;/p&gt;
-
-&lt;p&gt;Et comme beaucoup de mes congénères j&amp;#39;ai un coté assez &lt;strong&gt;geek&lt;/strong&gt;. Pendant mon adolescence, je jouais à AD&amp;amp;D et lisais des livres « dont vous êtes le héros », j&amp;#39;ai nagé dans la S.F. des années 80/90 et j&amp;#39;ai découvert l&amp;#39;informatique avec des machines de type Spectrum, Amstrad, MO5/TO7, Atari et Amiga, puis des PC toujours plus puissants et polyvalents. Ma veille technique oscillait entre les lectures de Hebdogiciel et d&amp;#39;autres revues orientées développement/bidouillage. Tous mes passes-temps étaient plus ou moins orientés vers l&amp;#39;usage des machines et la conception de programmes. Et cela s&amp;#39;est prolongé pendant mes premières années professionnelles où l&amp;#39;inventivité et l&amp;#39;innovation compensaient les manques de moyens, où la confiance était réelle, et permettait d&amp;#39;assurer les services rendus.&lt;/p&gt;
-
-&lt;p&gt;Mais ça, c&amp;#39;était avant. Point de confiance désormais avec une hiérarchie qui a eu trop peur d&amp;#39;être un jour « tenue par les couilles » (sic!) par ses informaticiens. C&amp;#39;est de cette peur, et de cette défiance qu&amp;#39;est venu le concept de DSI, là où un Centre de Ressources Informatique remplissait clairement les missions qui lui étaient confiées, avec des gens compétents et motivés à la fois par leur travail et par la satisfaction du service rendu.&lt;/p&gt;
-
-&lt;p&gt;Les fonctions ont été segmentées et cloisonnées, les gens clairement identifiés avec des « casquettes » et rangés dans leur domaine de compétence sans l&amp;#39;opportunité d&amp;#39;en changer. Des huiles ont été recrutées pour mettre en ordre tout ce petit monde auto-organisé, les monter les uns contre les autres, pointer du doigt des faux-problèmes sans apporter de solutions crédibles, faire des rapports au doigt mouillé et dépenser le budget, oh le sacro-saint budget, en projets aussi hors de prix qu&amp;#39;inefficaces.&lt;/p&gt;
-
-&lt;p&gt;Et moi dans tout ça, je ne rêvais que de cellules auto-gérées et communicantes, qui sauraient quelle place était la leur dans un ensemble cohérent. Je lisais des bouquins sur les méthodologies agiles, sur les nouveaux modes de management, sur la transversalité des métiers qui mènerait à ce que l&amp;#39;on nomme &lt;a href="http://fr.wikipedia.org/wiki/Devops"&gt;DevOps&lt;/a&gt; aujourd&amp;#39;hui, de temps réservés où nous pourrions échanger sur nos pratiques, apprendre des uns et des autres et progresser ensemble. Mais tous ces éléments ne sont pas compatibles avec la rigidité d&amp;#39;une DSI et des personnes qui la pilotent. C&amp;#39;est pour cela que je me suis mis en tête de trouver autre chose, qui serait plus en adéquation avec mes aspirations. Et je me suis mis en quête d&amp;#39;un nouveau poste.&lt;/p&gt;
-
-&lt;p&gt;Quel désastre. En fait, c&amp;#39;est partout pareil !&lt;/p&gt;
-
-&lt;p&gt;Tous les établissements de la fonction publique se structurent de la même manière : des DSI, cloisonnées, sclérosées, répondant au seul objectif de « bien dépenser le budget alloué ». Objectif sûrement louable pour la plupart des gens, mais certainement pas pour moi. Ma vision est toujours celle où du bien-être des employés naissent des choses formidables comme la motivation, l&amp;#39;auto-organisation, la confiance et les performances et qui mènent à ce que les missions soient remplies et que les choses se passent bien dans un environnement agréable.&lt;/p&gt;
-
-&lt;p&gt;Je me suis alors tourné vers le privé. Ai essayé de trouver une petite structure, tout du moins à taille humaine, où je pourrais évoluer avec des collègues que je côtoierais au quotidien, où les échanges seraient favorables dans les deux sens. Quel mal m&amp;#39;en a pris !&lt;/p&gt;
-
-&lt;p&gt;Ces petites structures existent, mais à moins de bosser, quasi jour et nuit, en connaissant par cœur les dernières techniques, logiciels, framework à la mode, point de salut. En plus il faut se délocaliser. Au mieux sur Paris, au pire à l&amp;#39;étranger. Et ne parlons pas du télétravail qui reste complètement épisodique, hormis les boites qui se sont construites sur ce modèle mais qui ne recrutent que des &lt;strong&gt;jedi ninja à fort penchant hacker qui roxxorise du poney, et si t&amp;#39;es un hipster full-swag c&amp;#39;est encore mieux car ça colle à l&amp;#39;esprit de la boîte&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Et le pire de tout, lors des entretiens que j&amp;#39;ai pu passer, mon expérience dans la fonction publique est considérée comme un &lt;strong&gt;handicap&lt;/strong&gt; ! Je dois être 2x meilleur que le meilleur qui se présente pour avoir une chance de passer à l&amp;#39;étape suivante qui est souvent une mise en situation avec les équipes, là ou on voit si ça peut vraiment coller. Sans bien évidemment parler de la rémunération avant cette ultime étape, comme ça, on hésite à refuser si on trouve que c&amp;#39;est trop peu.&lt;/p&gt;
-
-&lt;p&gt;À 40 ans, ce n&amp;#39;est ni le rythme que je recherche, ni la rémunération que j&amp;#39;attends. Comme beaucoup de gens, j&amp;#39;ai une maison et son crédit à rembourser, des gosses qui s&amp;#39;apprêtent à se lancer dans les études et bien entendu quasi pas de réserve financière pour s&amp;#39;imaginer tout plaquer, et encore moins de possibilité de rupture conventionnelle et des indemnités chômage associées. Oh bien sur, vous me direz : « Eh ben, pourquoi tu te mets pas &lt;strong&gt;freelance&lt;/strong&gt; ? ». Facile à dire, plus difficile à faire. Pareil ici, il faut un minimum de réserve pour se lancer (la plupart des gens parlent de 6 mois à 1 an d&amp;#39;équivalent de ton revenu actuel) chose que je n&amp;#39;ai bien évident pas, même avec mon salaire actuel de « ministre ».&lt;/p&gt;
-
-&lt;p&gt;Bref, 3 ans de recherche, de candidatures, d&amp;#39;entretiens, d&amp;#39;espoir et de désespoir pour en arriver au constat que &lt;strong&gt;je suis fonctionnaire et c&amp;#39;est bien fait pour ma gueule&lt;/strong&gt;. Après tout, pourquoi un sale nanti comme moi, pas trop mal payé pour ce qu&amp;#39;on attend de lui, voudrait changer, se remettre en cause, et profiler son activité professionnelle en dehors des clous qui ont été plantés pour lui ?&lt;/p&gt;
-
-&lt;p&gt;Alors oui je suis exigeant, oui je ne fais sûrement pas les efforts nécessaires pour provoquer le changement, oui je râle beaucoup, oui je vis dans le monde des bisounours, oui je suis un privilégié qui devrait se contenter de ce qu&amp;#39;il a et fermer sa gueule de sale emmerdeur de fonctionnaire, faire ses 37h30 et profiter des ses probablement trop nombreux jours de congés.&lt;/p&gt;
-
-&lt;p&gt;Mais c&amp;#39;est plus fort que moi. Ce n&amp;#39;est pas ma nature, mon profil, mon objectif, appelez cela comme vous voulez, de rester dans une situation professionnelle où je suis frustré au quotidien. De devenir un alchimiste tous les matins et de transmuter des pieds de plomb en une matière encore plus dense. De ne pas pouvoir ne serait-ce que tenter de mettre en place de nouvelles choses qui permettraient de rendre ce quotidien plus serein, plus intéressant, plus motivant. Ce n&amp;#39;est pas moi, mais je n&amp;#39;arrive même plus à m&amp;#39;en convaincre. Mon environnement professionnel s&amp;#39;en est chargé.&lt;/p&gt;
-
-&lt;p&gt;Bref, je renonce. La fonction publique a gagné. Elle a absorbé toute la volonté que j&amp;#39;avais de faire des choses bien de ma vie professionnelle. Je continuerai donc à être pas trop mal payé pour des activités aussi insipides qu&amp;#39;inutiles, à souffler et pester contre un système qui ne met plus l&amp;#39;humain dans ses équations, à être infect avec certains de mes collègues que je méprise pour leur incompétence, mais qui au fond ont tout compris depuis fort longtemps. Car c&amp;#39;est moi qui suis dans le délire. Après tout, pourquoi se faire chier à faire des choses sympa alors qu&amp;#39;on peut rester assis sur son cul à attendre l&amp;#39;heure de rentrer chez soi pour &lt;a href="http://fr.wikipedia.org/wiki/Temps_de_cerveau_humain_disponible"&gt;vendre son temps de cerveau à Coca Cola&lt;/a&gt; ?&lt;/p&gt;
-
-&lt;p&gt;Comme dirait &lt;a href="http://fr.wikipedia.org/wiki/La_Classe_am%C3%A9ricaine"&gt;George Abitbol&lt;/a&gt;, l&amp;#39;homme le plus classe du monde : « &lt;a href="https://www.youtube.com/watch?v=XdVjIzTBDdQ"&gt;Monde de merde&lt;/a&gt; ».&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Edit du 02/10/2014&lt;/em&gt;: merci à &lt;a href="https://larlet.fr"&gt;David Larlet&lt;/a&gt; pour les corrections (1er PR du blog, ça mérite d&amp;#39;être signalé).&lt;/p&gt;
 </content>
   </entry>
 </feed>
