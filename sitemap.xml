@@ -77,6 +77,10 @@
 <priority>0.7</priority>
 </url>
 <url>
+<loc>http://bobmaerten.github.io/blog/2015/passage-de-boot2docker-a-docker-machine</loc>
+<priority>0.7</priority>
+</url>
+<url>
 <loc>http://bobmaerten.github.io/blog/tags/blog</loc>
 <priority>0.7</priority>
 </url>
@@ -130,6 +134,10 @@
 </url>
 <url>
 <loc>http://bobmaerten.github.io/blog/2015/05</loc>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>http://bobmaerten.github.io/blog/2015/05/17</loc>
 <priority>0.7</priority>
 </url>
 <url>
